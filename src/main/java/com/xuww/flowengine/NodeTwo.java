@@ -1,5 +1,8 @@
 package com.xuww.flowengine;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class NodeTwo implements FlowNodeInterface{
     @Override
     public Object invokeNode(FlowEngine.RunData nodeData, Context context) {

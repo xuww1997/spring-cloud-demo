@@ -19,17 +19,17 @@ public class FlowNode {
         } else {
             key = nodeName.getName();
         }
-        if (nodeMap.containsKey(key)){
+        if (nodeMap.containsKey(key)) {
             return;
         }
         nodeMap.put(key, nodeConf);
     }
 
     public void add(Class nodeName, NodeConf nodeConf) {
-        this.add(nodeName.getName(), nodeName, nodeConf);
+        this.add(null, nodeName, nodeConf);
     }
 
-    public void replace(String groupName, Class nodeName, NodeConf nodeConf){
+    public void replace(String groupName, Class nodeName, NodeConf nodeConf) {
         String key = null;
         if (StringUtils.isNotBlank(groupName)) {
             key = groupName + "_" + nodeName.getName();
@@ -39,11 +39,11 @@ public class FlowNode {
         nodeMap.put(key, nodeConf);
     }
 
-    public void replace(Class nodeName, NodeConf nodeConf){
-        this.replace(nodeName.getName(),nodeName,nodeConf);
+    public void replace(Class nodeName, NodeConf nodeConf) {
+        this.replace(null, nodeName, nodeConf);
     }
 
-    public void remove(String groupName,Class nodeName){
+    public void remove(String groupName, Class nodeName) {
         String key = null;
         if (StringUtils.isNotBlank(groupName)) {
             key = groupName + "_" + nodeName.getName();
@@ -53,14 +53,13 @@ public class FlowNode {
         nodeMap.remove(key);
     }
 
-    public void remove(Class nodeName){
-        this.remove(nodeName.getName(),nodeName);
+    public void remove(Class nodeName) {
+        this.remove(null, nodeName);
     }
 
-    public Set<String> getNodeList(){
+    public Set<String> getNodeList() {
         return nodeMap.keySet();
     }
-
 
 
     @Getter

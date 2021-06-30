@@ -7,7 +7,6 @@ import com.google.common.collect.Maps;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -62,18 +61,18 @@ public class FlowEngine {
                     int timeout = nodeConf.getTimeout();
                     Future future = resultList.get(i);
                     try {
-                        Object o = future.get(timeout,TimeUnit.MILLISECONDS);
-                        context.getAdaptorMap().put(detailNode.resultKey(),o);
-                    }catch (ExecutionException e){
+                        Object o = future.get(timeout, TimeUnit.MILLISECONDS);
+                        context.getAdaptorMap().put(detailNode.resultKey(), o);
+                    } catch (ExecutionException e) {
                         needThrowExp = true;
-                    }catch (TimeoutException o){
+                    } catch (TimeoutException o) {
                         needThrowExp = true;
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         needThrowExp = true;
                     }
                 }
             }
-            if (needThrowExp){
+            if (needThrowExp) {
                 throw new RuntimeException();
             }
         }
@@ -100,7 +99,7 @@ public class FlowEngine {
                 nodeNameList.add(nodeName);
                 nodeGroup.put(nodeName, nodeNameList);
             } else {
-                List<String> nodeNameList = nodeGroup.get(nodeGroup);
+                List<String> nodeNameList = nodeGroup.get(groupName);
                 nodeNameList = nodeNameList == null ? Lists.newArrayList() : nodeNameList;
                 nodeNameList.add(nodeName);
                 nodeGroup.put(groupName, nodeNameList);

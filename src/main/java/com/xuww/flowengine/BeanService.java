@@ -5,7 +5,9 @@ import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BeanService implements ApplicationContextAware {
     /**
      * spring bean 上下文
